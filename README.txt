@@ -1,0 +1,1 @@
+In childhood we all used to play a game known as #SNAKE GAME and we all were crazy for it. So I thought to look at design and decided to code the game. This game uses JAVA, SWING, APPLETS etc things in it. 
