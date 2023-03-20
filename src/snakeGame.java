@@ -9,7 +9,8 @@ public class snakeGame {
         //gameFrame frame = new gameFrame();
 		 
         // we can also do the above thing with
-		new gameFrame();
+		new startPageFrame();
 	}
 
 }
+

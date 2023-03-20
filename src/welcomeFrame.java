@@ -1,22 +1,23 @@
-import javax.swing.JFrame;   // here we are importing our JFrame
+import javax.swing.JFrame;
 
-// this class will be used to extend the jFrame of the class
-// out gameFrame class is extending the JFrame in the next line
-public class gameFrame extends JFrame{  
+public class welcomeFrame extends JFrame
+{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// making the constructor
-	gameFrame(){
-		
+	
+	
+	   
+	welcomeFrame() {
+		// TODO Auto-generated constructor stub
 		// creating the instance of the gamePanel class
         //gamePanel panel = new gamePanel();
 		
 		// adding gamePanel to the gameFrame class
-		this.add(new gamePanel());  // add will take instance of any class new gamePanel() also creates the instance of the class
+		this.add(new welcomePanel());  // add will take instance of any class new gamePanel() also creates the instance of the class
 		this.setTitle("Snake Game");//  this is used to set name of the frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // this is used to set close operation on the JFrame
 		this.setResizable(false);  // to remove the re sizable factor

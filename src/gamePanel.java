@@ -17,13 +17,15 @@ public class gamePanel extends JPanel implements ActionListener {
 	static final int SCREEN_WIDTH = 600; 
 	static final int SCREEN_HEIGHT = 600;
 	
+	ImageIcon image1 ,image2 , image3 , image4 , image5 , image6 , image7 , image8 , image9 , image10;
+
 	// in snake game we have matrix like structure which is used to display the apples this will decide the 4sides of that cube or apple imagine matrix here and then one of the cube as apple
 	static final int UNIT_SIZE = 25;
 	
 	// THIS WILL DECIDE THE NUMBER OF CUBES OF THE MATRIX
 	static final int GAME_UNITS = (SCREEN_WIDTH*SCREEN_HEIGHT)*UNIT_SIZE;
 	
-	static final int DELAY = 75;  // delay of game
+	static final int DELAY = 100;  // delay of game
 	
 	// these are the two arrays which will be used to  X and Y 	they will
 	// hold all the x and y for all the bodyParts of our snake and also the head of the snake 
@@ -39,7 +41,7 @@ public class gamePanel extends JPanel implements ActionListener {
 	char direction = 'R';  // initial direction for the movement of snake will be right U = up , D = down , L = left R = right
 	boolean running = false; // this is used to tell whether the game is running at any instance or not
 	
-	Timer timer;  // Timer is a defined in u t i l package which is used to run a thread of a program after the specified amount of 
+	Timer timer , timer1 ; // Timer is a defined in u t i l package which is used to run a thread of a program after the specified amount of 
 	// the time. this is done with help of a functions. timer basically works on the MULTITHREADING concepts so the functions which were there are also available here too like start , end etc
 	Random random; // creating the instance of the class i.e. RANDOM
 	
@@ -51,7 +53,7 @@ public class gamePanel extends JPanel implements ActionListener {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH , SCREEN_HEIGHT)); 
 		
 		// setting the color
-		this.setBackground(Color.black);
+		this.setBackground(new Color(143,188,143));
 		
 		// changing the focus
 		this.setFocusable(true);
@@ -59,18 +61,25 @@ public class gamePanel extends JPanel implements ActionListener {
 		// adding keyListener
 		this.addKeyListener(new MyKeyAdapter());
 		
+		this.setLayout(null);
+		
 		// starting game
 		startGame();
 	}
-	
+	 
 	// this will be used to start
-	public void startGame() {
+	public void startGame()  {
+		
+//		new waitFrame();
+		
+//		registrationScreen(g);
 		newApple(); // creating new apple or the cube of matrix just when the game starts
 		running = true;  // running the game
 		
 		timer = new Timer(DELAY , this); // this is passed here because after any kind of 
 		// action game will start with a DELAY 
 		timer.start(); // start function of mutithreading is called here
+		putTiles();
 	}
 	
 	// this will be used to paint things in screen
@@ -87,16 +96,16 @@ public class gamePanel extends JPanel implements ActionListener {
 			// creating the matrix for apples
 			
 			// this was just made to see the grids inorder to create the apples.
-			/*
-			for(int i = 0; i< SCREEN_HEIGHT/UNIT_SIZE;i++) {
-				
-				// PUTS LINES ON X AXIS
-				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-				
-				// PUTS LINE ON Y AXIZ 
-				g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-			}
-			*/
+			
+//			for(int i = 0; i< SCREEN_HEIGHT/UNIT_SIZE;i++) {
+//				
+//				// PUTS LINES ON X AXIS
+//				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+//				
+//				// PUTS LINE ON Y AXIZ 
+//				g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
+//			}
+			
 			
 			// TO DRAW THE APPLE
 			g.setColor(Color.red);
@@ -187,6 +196,13 @@ public class gamePanel extends JPanel implements ActionListener {
 			running = false;
 		}
 		
+		if((x[0] >= 180 && x[0] <=260) && (y[0] >=0 && y[0] <= 20)) {
+			running = false;
+		}
+		
+//		if() {
+//			running = false;
+//		}
 		// head touches top border
 		if(y[0] < 0) {
 			running = false;
@@ -197,6 +213,7 @@ public class gamePanel extends JPanel implements ActionListener {
 			running = false;
 		}
 		
+		
 		if(!running) {
 			timer.stop();  // as timer is a multi threading function that is why its a thread and have all the thread functions
 		}
@@ -205,8 +222,8 @@ public class gamePanel extends JPanel implements ActionListener {
 	// this will be used to tell the Game over
 	public void gameOver(Graphics g) {
 		// game over text
-		g.setColor(Color.red); // uska color red hoga
-		g.setFont(new Font("Ink Free" , Font.BOLD , 75)); // font type and size of the font
+		g.setColor(new Color(0,100,0)); // uska color red hoga
+		g.setFont(new Font("Ink Free" , Font.BOLD , 40)); // font type and size of the font
 		
 		// ek font matrix nam ki cheez hoti hai hmari java me jo ki hme font ko center of the screen par lane me help kr deti hai kafi jyada
 		
@@ -216,8 +233,8 @@ public class gamePanel extends JPanel implements ActionListener {
 	
 	public void drawScore(Graphics g) {
 		// game over text
-		g.setColor(Color.red); // uska color red hoga
-		g.setFont(new Font("Ink Free" , Font.BOLD , 30)); // font type and size of the font
+		g.setColor(new Color(0,100,0)); // uska color red hoga
+		g.setFont(new Font("Ink Free" , Font.BOLD , 20)); // font type and size of the font
 				
 		// ek font matrix nam ki cheez hoti hai hmari java me jo ki hme font ko screen par kahi bhi set krne me help krti  help kr deti hai kafi jyada
 				
@@ -225,6 +242,69 @@ public class gamePanel extends JPanel implements ActionListener {
 		g.drawString("Score = "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score = "+applesEaten))/2 , SCREEN_HEIGHT - 250); // THIS LINE WILL display score at the bottom of the screen
 	}
 	
+	// for putting tiles 
+	public void putTiles() {
+		try {
+			image1 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i2 = image1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i3 = new ImageIcon(i2);
+		    JLabel back = new JLabel(i3);
+		    back.setBounds(200,0,40,40);
+		    this.add(back);
+		    
+		    image2 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i21 = image1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i31 = new ImageIcon(i21);
+		    JLabel back2 = new JLabel(i31);
+		    back2.setBounds(240,0,40,40);
+		    this.add(back2);
+		    
+		    image3 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i22 = image3.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i32 = new ImageIcon(i22);
+		    JLabel back3 = new JLabel(i32);
+		    back3.setBounds(380,200,40,40);
+		    this.add(back3);
+		    
+		    image4 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i23 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i33 = new ImageIcon(i23);
+		    JLabel back4 = new JLabel(i33);
+		    back4.setBounds(380,240,40,40);
+		    this.add(back4);
+		    
+		    image5 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i24 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i34 = new ImageIcon(i24);
+		    JLabel back5 = new JLabel(i34);
+		    back5.setBounds(300,560,40,40);
+		    this.add(back5);
+		    
+		    image6 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i25 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i35 = new ImageIcon(i25);
+		    JLabel back6 = new JLabel(i35);
+		    back6.setBounds(340,560,40,40);
+		    this.add(back6);
+		    
+		    image7 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i26 = image7.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i36 = new ImageIcon(i26);
+		    JLabel back7 = new JLabel(i36);
+		    back7.setBounds(100,280,40,40);
+		    this.add(back7);
+		    
+		    image8 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			Image i27 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+			ImageIcon i37 = new ImageIcon(i27);
+		    JLabel back8 = new JLabel(i37);
+		    back8.setBounds(100,320,40,40);
+		    this.add(back8);
+	
+		}catch(Exception e) {
+			System.out.print("No image here");
+		}
+	}
 	
 	// as we are implementing our ActionListener interface and the functions in that will the abstract that is why we are over riding one of them here
 	@Override
