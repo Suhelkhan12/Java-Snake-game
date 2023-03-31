@@ -45,6 +45,8 @@ public class gamePanel extends JPanel implements ActionListener {
 	// the time. this is done with help of a functions. timer basically works on the MULTITHREADING concepts so the functions which were there are also available here too like start , end etc
 	Random random; // creating the instance of the class i.e. RANDOM
 	
+	JButton restartB;
+	
 	// making the constructor
 	gamePanel(){
 		random = new Random();  // giving memory to the reference in 38 line
@@ -115,13 +117,13 @@ public class gamePanel extends JPanel implements ActionListener {
 			
 			for(int i = 0; i < bodyParts; i++) {
 				if(i == 0) {  // this refers to head of snake
-					g.setColor(Color.green);
-					g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE); // THIS FILLS THE RECTANGLE OF THE SNAKE
+					g.setColor(Color.black);
+					g.fillOval(x[i], y[i], UNIT_SIZE, UNIT_SIZE); // THIS FILLS THE RECTANGLE OF THE SNAKE
 				}else {
 					
-					// g.setColor(new Color(45 , 180 , 0)); // this line will only generate a snake of a static color
-					g.setColor(new Color(random.nextInt(255) , random.nextInt(255) , random.nextInt(255))); // this will generate a snake of random color
-					g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+				     g.setColor(new Color(59,75,33)); // this line will only generate a snake of a static color
+					//g.setColor(new Color(random.nextInt(255) , random.nextInt(255) , random.nextInt(255))); // this will generate a snake of random color
+					g.fillOval(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
 				}
 			}
 		}else {
@@ -196,7 +198,7 @@ public class gamePanel extends JPanel implements ActionListener {
 			running = false;
 		}
 		
-		if((x[0] >= 180 && x[0] <=260) && (y[0] >=0 && y[0] <= 20)) {
+		if((x[0] >= 200 && x[0] <=260) && (y[0] >=0 && y[0] <= 38)) {
 			running = false;
 		}
 		
@@ -240,6 +242,15 @@ public class gamePanel extends JPanel implements ActionListener {
 				
 		FontMetrics metrics = getFontMetrics(g.getFont()); // jo font hme set krna graphics se use idhar bhej diya matrix me
 		g.drawString("Score = "+applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Score = "+applesEaten))/2 , SCREEN_HEIGHT - 250); // THIS LINE WILL display score at the bottom of the screen
+		
+		restartB = new JButton("Restart");
+		this.add(restartB);
+		restartB.setBounds(300,400,60,30);
+		restartB.setBackground(Color.black);
+		restartB.setForeground(Color.white);
+		restartB.setBorder(null);
+		restartB.addActionListener(this);
+		
 	}
 	
 	// for putting tiles 
@@ -318,6 +329,12 @@ public class gamePanel extends JPanel implements ActionListener {
 		}
 		repaint(); // it is in applet jab b call hoga cheeze erase ho kr dubara print ho jaygi
 		
+		Object source = e.getSource();
+		if(source == restartB) {
+			new welcomeFrame();
+//			System.out.print(source);
+		}
+;		
 	}
 	
     // this is the inner class which will be used to see which of the following is pressed and listen the event attached to it.

@@ -29,8 +29,10 @@ public class loginPanel extends JPanel implements ActionListener{
 		JLabel logo;
 		JLabel nouser;
 		
+		
 	
 		JButton loginB;
+		JButton registerB;
 		
 		JTextField userNameField;
 		JPasswordField passwordField;
@@ -85,6 +87,12 @@ public class loginPanel extends JPanel implements ActionListener{
 			loginB.addActionListener(this);
 			this.add(loginB);
 		
+			registerB = new JButton("Have'nt registered. Click me!");
+			registerB.setBounds(375,350,200,30);
+			registerB.setBackground(Color.white);
+			registerB.setBorder(null);
+			registerB.addActionListener(this);
+			this.add(registerB);
 			
 			
 			nouser = new JLabel("");
@@ -140,6 +148,9 @@ public class loginPanel extends JPanel implements ActionListener{
 		    		System.out.print(ex.getMessage());
 		    	}
 		    	
+		    }
+		    else {
+		    	new registerFrame();
 		    }
 		    
 			
