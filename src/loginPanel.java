@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,6 +39,8 @@ public class loginPanel extends JPanel implements ActionListener{
 		JTextField userNameField;
 		JPasswordField passwordField;
 		
+		ImageIcon image;
+		
 		loginPanel(){
 			this.setPreferredSize(new Dimension(SCREEN_WIDTH , SCREEN_HEIGHT)); 
 			this.setBackground(new Color(150,251,152));
@@ -45,8 +49,23 @@ public class loginPanel extends JPanel implements ActionListener{
 	        
 	        //adding input field and lables
 	        addInputs();
+	        addImage();
 		}
 	    
+		public void addImage() {
+			try {
+				image = new ImageIcon(ClassLoader.getSystemResource("snake/login.jpg"));
+				Image i2 = image.getImage().getScaledInstance(600, 600, Image.SCALE_SMOOTH);
+				ImageIcon i3 = new ImageIcon(i2);
+			    JLabel back = new JLabel(i3);
+			    back.setBounds(0,0,600,600);
+			    this.add(back);
+		
+			}catch(Exception e) {
+				System.out.print("No image here");
+			}
+		}
+		
 		public void addInputs() {
 			
 			logo = new JLabel("Fill up your details...");
@@ -100,12 +119,6 @@ public class loginPanel extends JPanel implements ActionListener{
 			nouser.setForeground(Color.black);
 			this.add(nouser);
 //			
-//			startGame = new JButton("Play");
-//			startGame.setBounds(225,450,100,30);
-//			startGame.setBackground(Color.white);
-//			startGame.setBorder(null);
-//			startGame.addActionListener(this);
-//			this.add(startGame);
 		    
 		}
 
@@ -137,7 +150,7 @@ public class loginPanel extends JPanel implements ActionListener{
 		    		ResultSet rs = stmt.executeQuery();
 		    		
 		    		if(rs.next()) {
-//		    			System.out.print("Successful login ");
+		    			System.out.print("Successful login ");
 		    			new welcomeFrame();
 		    		}
 		    		else {

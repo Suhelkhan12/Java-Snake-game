@@ -17,7 +17,7 @@ public class gamePanel extends JPanel implements ActionListener {
 	static final int SCREEN_WIDTH = 600; 
 	static final int SCREEN_HEIGHT = 600;
 	
-	ImageIcon image1 ,image2 , image3 , image4 , image5 , image6 , image7 , image8 , image9 , image10;
+	ImageIcon image1 ,image2 , image3 , image4 , image5 , image6 , image7 , image8 , image9 , image10 , image11, image12 , image13 ,image14 , image15 , image16;
 
 	// in snake game we have matrix like structure which is used to display the apples this will decide the 4sides of that cube or apple imagine matrix here and then one of the cube as apple
 	static final int UNIT_SIZE = 25;
@@ -198,13 +198,24 @@ public class gamePanel extends JPanel implements ActionListener {
 			running = false;
 		}
 		
-		if((x[0] >= 200 && x[0] <=260) && (y[0] >=0 && y[0] <= 38)) {
+		if((x[0] >= 200 && x[0] <=280) && (y[0] >=70 && y[0] <= 110)) {
 			running = false;
 		}
 		
-//		if() {
-//			running = false;
-//		}
+		if((x[0] >= 380 && x[0] <=420) && (y[0] >=200 && y[0] <= 280)) {
+			running = false;
+		}
+		
+		if((x[0] >= 300 && x[0] <=340) && (y[0] >=450 && y[0] <= 490)) {
+			running = false;
+		}
+
+		if((x[0] >= 100 && x[0] <=140) && (y[0] >=280 && y[0] <= 360)) {
+			running = false;
+		}
+
+
+		
 		// head touches top border
 		if(y[0] < 0) {
 			running = false;
@@ -245,7 +256,7 @@ public class gamePanel extends JPanel implements ActionListener {
 		
 		restartB = new JButton("Restart");
 		this.add(restartB);
-		restartB.setBounds(300,400,60,30);
+		restartB.setBounds(400,290,60,30);
 		restartB.setBackground(Color.black);
 		restartB.setForeground(Color.white);
 		restartB.setBorder(null);
@@ -256,62 +267,69 @@ public class gamePanel extends JPanel implements ActionListener {
 	// for putting tiles 
 	public void putTiles() {
 		try {
-			image1 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+			image1 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
 			Image i2 = image1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i3 = new ImageIcon(i2);
 		    JLabel back = new JLabel(i3);
-		    back.setBounds(200,0,40,40);
+		    back.setBounds(200,70,40,40);
 		    this.add(back);
 		    
-		    image2 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+		    image2 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
 			Image i21 = image1.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i31 = new ImageIcon(i21);
 		    JLabel back2 = new JLabel(i31);
-		    back2.setBounds(240,0,40,40);
+		    back2.setBounds(240,70,40,40);
 		    this.add(back2);
 		    
-		    image3 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+		    image3 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
 			Image i22 = image3.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i32 = new ImageIcon(i22);
 		    JLabel back3 = new JLabel(i32);
 		    back3.setBounds(380,200,40,40);
 		    this.add(back3);
 		    
-		    image4 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+		    image4 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
 			Image i23 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i33 = new ImageIcon(i23);
 		    JLabel back4 = new JLabel(i33);
 		    back4.setBounds(380,240,40,40);
 		    this.add(back4);
 		    
-		    image5 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
-			Image i24 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		    image5 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
+			Image i24 = image5.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i34 = new ImageIcon(i24);
 		    JLabel back5 = new JLabel(i34);
-		    back5.setBounds(300,560,40,40);
+		    back5.setBounds(300,450,40,40);
 		    this.add(back5);
 		    
-		    image6 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
-			Image i25 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		    image6 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
+			Image i25 = image6.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i35 = new ImageIcon(i25);
 		    JLabel back6 = new JLabel(i35);
-		    back6.setBounds(340,560,40,40);
+		    back6.setBounds(340,450,40,40);
 		    this.add(back6);
 		    
-		    image7 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
+		    image7 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
 			Image i26 = image7.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i36 = new ImageIcon(i26);
 		    JLabel back7 = new JLabel(i36);
 		    back7.setBounds(100,280,40,40);
 		    this.add(back7);
 		    
-		    image8 = new ImageIcon(ClassLoader.getSystemResource("tiles/wall.png"));
-			Image i27 = image4.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		    image8 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
+			Image i27 = image8.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 			ImageIcon i37 = new ImageIcon(i27);
 		    JLabel back8 = new JLabel(i37);
 		    back8.setBounds(100,320,40,40);
 		    this.add(back8);
-	
+             
+//		    image9 = new ImageIcon(ClassLoader.getSystemResource("tiles/tree.png"));
+//		    Image i28 = image9.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+//		    ImageIcon i38 = new ImageIcon(i28);
+//		    JLabel back9 = new JLabel(i38);
+//		    back9.setBounds(150,150,40,40);
+//		    this.add(back9);
+		    
 		}catch(Exception e) {
 			System.out.print("No image here");
 		}

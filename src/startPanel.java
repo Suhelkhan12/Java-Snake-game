@@ -39,8 +39,6 @@ public class startPanel extends JPanel implements ActionListener {
         addButtons();
         addImage();
         
-        
-        
 	}
 	
 	public void addImage() {
@@ -56,13 +54,14 @@ public class startPanel extends JPanel implements ActionListener {
 			System.out.print("No image here");
 		}
 	}
+	
 	public void addButtons() {
 		
 		
         // for register purpose
 		b1 = new JButton("Register");
         b1.setBounds(150,400,80,30);
-        b1.setBackground(new Color(152,251,152));
+        b1.setBackground(new Color(120,255,170));
         b1.setBorder(null);
         b1.addActionListener(this);
         this.add(b1);
@@ -71,7 +70,7 @@ public class startPanel extends JPanel implements ActionListener {
         // for login purpose
         b2 = new JButton("Login");
         b2.setBounds(350,400,80,30);
-        b2.setBackground(new Color(152,251,152));
+        b2.setBackground(new Color(120,255,170));
         b2.setBorder(null);
         b2.addActionListener(this);
         this.add(b2);
